@@ -27,7 +27,7 @@ Try this request:
 
 These files guide the coding agent. They do not connect services, start paid resources, or grant access on their own. The agent still needs your project, tools, and permission for the work.
 
-Use the [design skills](https://github.com/jkupchanko/agent-skills) for interfaces and the [setup skill](https://github.com/john-couchbase/couchbase-aidp-setup) for backend connections.
+Use the [design skills](https://github.com/john-couchbase/agent-skills) for interfaces and the [setup skill](https://github.com/john-couchbase/couchbase-aidp-setup) for backend connections.
 
 ## Updates and feedback
 
