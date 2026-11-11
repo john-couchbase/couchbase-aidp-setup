@@ -1,0 +1,6 @@
+interface:
+  display_name: "Couchbase Setup & Troubleshooting"
+  short_description: "Capella keys, AI connections, and practical diagnostics"
+  default_prompt: "Use $couchbase-aidp-setup to identify the failing connection, check the right credentials, and verify the smallest safe end-to-end test."
+policy:
+  allow_implicit_invocation: true
