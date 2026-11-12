@@ -58,3 +58,5 @@ For the later direct-pass/SQL-5010 case, see [SQL integration follow-up](inciden
 - On a connection, query, parsing or schema error, a configured direct-model fallback can preserve service. Record which path actually succeeded and a safe error category, never raw driver exceptions.
 - Reserve budget for the fallback attempt as well as the SQL attempt. Missing SQL tokens or cache metadata means unavailable, not zero spend or a cache miss.
 - Exercise the actual storm/request flow, not only a constant query. Confirm persisted outputs, command references and model labels agree with the execution path.
+
+- Inspect the complete SQL result envelope and SDK metadata before deciding usage is absent. Query execution time and result size are not model token counts. Keep live connection status and command examples derived from the backend; bundled reference text can become stale after a rollout.

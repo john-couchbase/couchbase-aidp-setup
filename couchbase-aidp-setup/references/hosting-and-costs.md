@@ -37,3 +37,12 @@ Do not assume a failed deletion is free or that pausing one service stops anothe
 ## Deploying a verified SQL path
 
 Keep SQL explicitly opt-in and retain a direct fallback plus a rollback switch. Store the SQL-host credential separately from the run-data credential in sensitive server variables. Test a protected preview with the actual server runtime, then repeat a bounded request and isolation test at the public production alias. A successful fallback is service continuity, not proof that SQL worked: assert the recorded inference path. Validate nonempty results, stored decisions, command labels and incomplete usage reporting. Publish source and sanitized evidence separately from private configuration; identify the exact deployed revision/branch.
+
+
+## Measured usage versus estimates
+
+Keep three categories separate: provider-reported token counts, approximate token estimates, and unavailable usage. Direct fallback usage must remain visible when the preceding SQL attempt has unknown usage. Count both attempts when supported by saved evidence, and do not infer cache misses from absent cache metadata.
+
+If explicitly requested, a text-size heuristic can give a rough SQL estimate. Label it beside the number, document the method and dated rate source, and retain measured fields unchanged. A rate from an AWS reference example is not confirmation of the tenant’s Capella credit price. Aggregate model counters cannot be assigned to one visitor when other traffic shares that model.
+
+Per-run saved results are not a complete billing ledger: failed calls without results, reset/expired records, storage, shared clusters, networking and hosting can be missing. Do not add an old database quote to model costs and call it the current total. Verify each resource and avoid counting a shared cluster’s whole bill as this demo’s incremental cost.

@@ -31,7 +31,7 @@ For the recent key issue: “I’m in AI Data Plane → Access Control → Model
 
 ## SQL integration follow-up — November 11, 2026
 
-Status: reproducible integration failure; root cause and vendor bug status unconfirmed. This follow-up does not erase the earlier, different SQL incident above.
+Initial status: reproducible integration failure. Current status: support workaround verified locally and on Vercel; root cause, workaround mechanism and permanent vendor fix remain unconfirmed. This follow-up does not erase the earlier, different SQL incident above.
 
 - After the reported Virginia redeployment, Model Service key creation succeeded without sign-out. The downloaded key returned HTTP 200 with a completion from Nova Micro and HTTP 200 with a 1,024-dimension embedding from Titan v2.
 - A newly associated completion function on a separate eligible cluster showed Healthy. Its first configuration used a database-style username as the model API Key ID. After user correction, the saved ID matched the downloaded Model Service ID.
@@ -62,3 +62,12 @@ The scoped SDK credential successfully ran the application’s SQL adapter. A fu
 ### Hosted runtime verification — November 12, 2026 UTC
 
 The Air preview and public Vercel deployment each completed four SQL classifications with no fallback, three direct recovery calls and one lower-priority skip. Saved decisions and SQL tools were verified; a second visitor remained unchanged and cross-session decision reads were denied. Existing SQL-cluster network admission was sufficient and was not widened. The dedicated execution-only credential is stored as a sensitive server variable. SQL costs remain incomplete because the function response supplies no token usage. This establishes the workaround in the hosted application, not a confirmed permanent vendor fix.
+
+
+### Usage and display follow-up — November 11, 2026 Pacific
+
+A subsequent scoped SDK probe inspected the full completion result and enabled Query metrics. The returned row contained nested response text only. Query metadata included status, request ID, elapsed/execution time, result count/size and error/warning counts, but no model token counts or price. This is evidence for the tested function/version, not a universal claim that no usage API exists.
+
+The demo now displays SQL costs as explicitly approximate text-size estimates, separate from provider-reported direct-call tokens. Its heuristic is UTF-8 bytes divided by four, rounded up, using supplied prompts and returned text; older saved results can reconstruct output JSON. That is not Nova tokenization and can omit hidden prompt overhead. The reference rates came from an AWS pricing example, not a verified Capella invoice. Failed SQL attempts with no output remain unpriced. Do not describe these numbers as actual billing or silently replace unavailable measured usage.
+
+The Commands page had a separate stale, hardcoded “Not configured” label despite working SQL. It now reads backend status and the command catalogue. Verify the served UI and actual query independently: neither a stale label nor a Healthy badge proves inference success or failure.
