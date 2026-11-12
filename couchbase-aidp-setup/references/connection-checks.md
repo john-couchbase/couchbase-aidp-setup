@@ -49,3 +49,12 @@ SELECT RAW default:ai_completion({
 Record SQL and direct paths separately for latency, usage and caching. Do not infer cache hits from speed. A larger output limit helped a historical empty-result case but is not a universal fix for authentication or internal errors.
 
 For the later direct-pass/SQL-5010 case, see [SQL integration follow-up](incident-lessons.md#sql-integration-follow-up--november-11-2026). A matching key ID does not prove the stored token; an edit-form placeholder mismatch does not prove a bad import.
+
+## Application integration after SQL succeeds
+
+- Use a dedicated credential on the cluster hosting the function. In the verified setup, Global Function Execute and Query Curl Access were sufficient; those are global execution privileges, not function-specific document access.
+- Keep the application datastore credential separate when its data is on another cluster. A working database connection does not grant access to the function host.
+- Bind the prompt as a SQL parameter. The observed completion envelope was an array containing a row whose response was an array with a response string. Validate the parsed model JSON before accepting it.
+- On a connection, query, parsing or schema error, a configured direct-model fallback can preserve service. Record which path actually succeeded and a safe error category, never raw driver exceptions.
+- Reserve budget for the fallback attempt as well as the SQL attempt. Missing SQL tokens or cache metadata means unavailable, not zero spend or a cache miss.
+- Exercise the actual storm/request flow, not only a constant query. Confirm persisted outputs, command references and model labels agree with the execution path.
