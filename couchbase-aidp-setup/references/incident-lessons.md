@@ -47,3 +47,10 @@ Status: reproducible integration failure; root cause and vendor bug status uncon
 3. Inspect generated function metadata without publishing definitions, policy IDs or tokens. If isolating a credential lookup is authorized, return only safe status/field names; never return the credential itself.
 4. Report the isolated failure and ask support to inspect Query-node credential-service logs, policy association and stored-credential handling. Do not call a generic 5010 a confirmed provider authentication error or confirmed product bug. Check explicit permissions rather than assuming ordinary SQL proves function/CURL privileges.
 5. After a fix: rerun direct inference and SQL completion, verify nonempty successful output (not just HTTP/SQL success), test the actual app runtime with its scoped credentials, then verify visitor isolation and usage tracking. Reapply only the approved network rules. Record the confirmed cause and fix here when supplied and verified.
+
+
+### Workaround verification — November 11, 2026
+
+The user relayed that support applied a workaround and intended to file a bug ticket. Subsequent browser SQL tests on the affected cluster returned a nonempty `OK` answer and correctly returned `CANCELLATION` for a passenger request. The workaround is verified for these two SQL tests; its mechanism and a permanent production code fix remain unconfirmed.
+
+Do not keep treating this incident as an active universal SQL outage. Also do not equate successful browser queries with hosted app integration: separate cluster credentials, network access, response parsing, fallback accounting and per-visitor isolation must still be tested. The user deferred hosted SQL integration; direct inference remains the deployed path. SQL responses observed here contain nested response text without token usage. Mark usage unknown rather than claiming zero cost, and account for both model attempts if SQL falls back to direct inference.
