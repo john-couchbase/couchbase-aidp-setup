@@ -19,6 +19,7 @@ Help someone get a working connection and explain what is actually connected. Th
 
 | Need | Read |
 |---|---|
+| SQL setup from first key through local and hosted verification | [SQL start to finish](references/sql-start-to-finish.md) |
 | Which API key, where to create it, expiry, region, sign-out | [Keys and access](references/keys-and-access.md) |
 | Direct model works/fails; database timeout; SQL inference | [Connection checks](references/connection-checks.md) |
 | Memory provisioning, provider authorization, readback/recall | [Managed memory](references/managed-memory.md) |

@@ -13,6 +13,8 @@ A separate skill for connecting Capella and the AI Data Plane, and finding the n
 - Check SQL functions, memory, catalog, and tracing.
 - Record failures clearly without exposing credentials.
 
+For the full SQL setup, follow [SQL start to finish](couchbase-aidp-setup/references/sql-start-to-finish.md): keys, function binding, permissions, local testing, Vercel, fallback and costs.
+
 ## Start here
 
 Copy the complete `couchbase-aidp-setup/` folder into `~/.codex/skills/` or `~/.claude/skills/`. Keep its references and scripts.
