@@ -58,3 +58,7 @@ Do not keep treating this incident as an active universal SQL outage. Also do no
 ### Local runtime verification — November 11, 2026
 
 The scoped SDK credential successfully ran the application’s SQL adapter. A full local storm completed four SQL classifications with no fallback, three direct recovery calls and one lower-priority skip. Results, tools and incomplete usage labels appeared in the UI. Injected connection/invalid-response tests exercised fallback and error redaction. This verifies the workaround in the local application; it does not identify the vendor fix mechanism.
+
+### Hosted runtime verification — November 12, 2026 UTC
+
+The Air preview and public Vercel deployment each completed four SQL classifications with no fallback, three direct recovery calls and one lower-priority skip. Saved decisions and SQL tools were verified; a second visitor remained unchanged and cross-session decision reads were denied. Existing SQL-cluster network admission was sufficient and was not widened. The dedicated execution-only credential is stored as a sensitive server variable. SQL costs remain incomplete because the function response supplies no token usage. This establishes the workaround in the hosted application, not a confirmed permanent vendor fix.

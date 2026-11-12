@@ -33,3 +33,7 @@ Daily request/step reservations are not dollar caps. A step may invoke several c
 Inventory resources individually. Turning off a database preserves its configuration/data but disconnects clients and still incurs the quoted off/storage and possible network/backup costs. Linked services and maintenance have separate behavior. [Cluster scheduling](https://docs.couchbase.com/cloud/clusters/off-on-schedule.html).
 
 Do not assume a failed deletion is free or that pausing one service stops another. Verify terminal state and current billing evidence; preserve data and exported non-secret configuration. Resuming requires checking the current budget, credentials, expiry, network access and dependencies, then a small end-to-end read/write/inference test. An assistant subscription upgrade does not pay Capella or provider charges.
+
+## Deploying a verified SQL path
+
+Keep SQL explicitly opt-in and retain a direct fallback plus a rollback switch. Store the SQL-host credential separately from the run-data credential in sensitive server variables. Test a protected preview with the actual server runtime, then repeat a bounded request and isolation test at the public production alias. A successful fallback is service continuity, not proof that SQL worked: assert the recorded inference path. Validate nonempty results, stored decisions, command labels and incomplete usage reporting. Publish source and sanitized evidence separately from private configuration; identify the exact deployed revision/branch.
