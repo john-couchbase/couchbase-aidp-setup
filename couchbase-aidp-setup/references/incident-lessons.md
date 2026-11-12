@@ -27,3 +27,23 @@ Short first-person draft:
 > Hey, I’m trying to [operation] in [Capella section and region]. When I [action], I get [exact sanitized error or sign-out]. I checked [one meaningful comparison]. Could you look at [request/deployment ID, shared privately] from [UTC time]?
 
 For the recent key issue: “I’m in AI Data Plane → Access Control → Models, creating a Virginia key for Nova Micro to test SQL inference. It keeps signing me out before I can finish.” Do not say the key was generated or tested if it was not.
+
+
+## SQL integration follow-up — November 11, 2026
+
+Status: reproducible integration failure; root cause and vendor bug status unconfirmed. This follow-up does not erase the earlier, different SQL incident above.
+
+- After the reported Virginia redeployment, Model Service key creation succeeded without sign-out. The downloaded key returned HTTP 200 with a completion from Nova Micro and HTTP 200 with a 1,024-dimension embedding from Titan v2.
+- A newly associated completion function on a separate eligible cluster showed Healthy. Its first configuration used a database-style username as the model API Key ID. After user correction, the saved ID matched the downloaded Model Service ID.
+- The edit form returned a short token-like value rather than the downloaded secret. It may be a placeholder; this does not establish incorrect import or prove the stored token matches. Do not print either value or repeatedly overwrite credentials based on this alone.
+- Ordinary SQL succeeded; constant-input AI completion repeatedly returned 5010, Error evaluating ExpressionScan. Inspecting installed metadata confirmed the generated function exists and calls a local credential service before its model endpoint.
+- An isolated read-only diagnostic of that same local credential lookup also failed (5010, ExpressionScan/projection). This narrows the failure boundary, but does not identify whether service availability, policy binding, permissions, credential storage, or another internal condition caused it.
+- With explicit approval, the model key briefly allowed all IPv4 sources for one test. The same failure persisted; the original restriction was restored and verified. This is evidence against the allowlist being the only issue, not proof of propagation timing or of every network hop working. No standing approval for broad access carries forward.
+
+### What to do next for this signature
+
+1. Confirm current deployment, key region, function signature and active application database. Direct inference passing does not activate SQL inference in an app or move data between clusters.
+2. Compare key identity privately and test the downloaded key directly against an independently verified public model endpoint. Never use an internal SQL gateway port as the public endpoint.
+3. Inspect generated function metadata without publishing definitions, policy IDs or tokens. If isolating a credential lookup is authorized, return only safe status/field names; never return the credential itself.
+4. Report the isolated failure and ask support to inspect Query-node credential-service logs, policy association and stored-credential handling. Do not call a generic 5010 a confirmed provider authentication error or confirmed product bug. Check explicit permissions rather than assuming ordinary SQL proves function/CURL privileges.
+5. After a fix: rerun direct inference and SQL completion, verify nonempty successful output (not just HTTP/SQL success), test the actual app runtime with its scoped credentials, then verify visitor isolation and usage tracking. Reapply only the approved network rules. Record the confirmed cause and fix here when supplied and verified.

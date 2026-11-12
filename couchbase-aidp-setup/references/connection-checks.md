@@ -47,3 +47,5 @@ SELECT RAW default:ai_completion({
 7. If direct inference passes but SQL fails, narrow the issue to binding, SQL-origin networking or the function service. Do not conclude gateway failure without evidence. Only wire the app to SQL after a successful query and end-to-end application test.
 
 Record SQL and direct paths separately for latency, usage and caching. Do not infer cache hits from speed. A larger output limit helped a historical empty-result case but is not a universal fix for authentication or internal errors.
+
+For the later direct-pass/SQL-5010 case, see [SQL integration follow-up](incident-lessons.md#sql-integration-follow-up--november-11-2026). A matching key ID does not prove the stored token; an edit-form placeholder mismatch does not prove a bad import.
